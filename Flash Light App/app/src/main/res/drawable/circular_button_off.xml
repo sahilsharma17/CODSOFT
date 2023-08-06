@@ -2,6 +2,6 @@
     android:shape="oval">
     <solid android:color="#EEFA7878" /> <!-- Red color when off -->
     <stroke
-        android:width="12dp"
+        android:width="20dp"
         android:color= "#EC4438"/>
 </shape>
