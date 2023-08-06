@@ -1,0 +1,7 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <solid android:color="#6EEA73" /> <!-- Green color when on -->
+    <stroke
+        android:width="12dp"
+        android:color= "#4CAF50"/>
+</shape>
