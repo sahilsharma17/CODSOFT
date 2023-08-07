@@ -1,16 +1,17 @@
 package com.example.calculator;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-
 import com.google.android.material.button.MaterialButton;
+import org.mozilla.javascript.Context;
+import org.mozilla.javascript.Scriptable;
+
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    TextView problemTv, solutionTv;
+    TextView resultTv, solutionTv;
     MaterialButton btnClear, btnOpenBracket, btnCloseBracket, btnDivide, btnMultiply, btnAdd, btnMinus, btnEquals, btnAllClear, btnDecimal;
     MaterialButton btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn0;
 
@@ -19,7 +20,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        problemTv = findViewById(R.id.problem_tv);
+        resultTv = findViewById(R.id.result_tv);
         solutionTv = findViewById(R.id.solution_tv);
         assignBtnID(btn0, R.id.btn_0);
         assignBtnID(btn1 ,R.id.btn_1);
@@ -52,6 +53,46 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view){
         MaterialButton Button = (MaterialButton) view;
         String btnText = Button.getText().toString();
-        solutionTv.setText(btnText);
+        //solutionTv.setText(btnText);
+        String dataCalculation = solutionTv.getText().toString();
+
+        if (btnText.equals("AC")) {
+            solutionTv.setText("");
+            resultTv.setText("0");
+            return;
+        }
+        if (btnText.equals("=")){
+            solutionTv.setText(resultTv.getText());
+            return;
+        }
+        if (btnText.equals("C")) {
+            dataCalculation = dataCalculation.substring(0,dataCalculation.length()-1);
+        }
+        else {
+            dataCalculation = dataCalculation + btnText;
+        }
+
+        solutionTv.setText(dataCalculation);
+        String finalAns = getAns(dataCalculation);
+
+        if (!finalAns.equals("Error")){
+            resultTv.setText((finalAns));
+        }
+
+    }
+
+    String getAns(String data){
+        try{
+            Context context = Context.enter();
+            context.setOptimizationLevel(-1);
+            Scriptable scriptable = context.initStandardObjects();
+            String finalAns = context.evaluateString(scriptable,data,"Javascript",1,null).toString();
+            if (finalAns.endsWith(".0")){
+                finalAns = finalAns.replace(".0", "");
+            }
+            return finalAns;
+        }catch (Exception e){
+            return "Error";
+        }
     }
 }

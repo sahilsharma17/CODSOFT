@@ -11,16 +11,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/solution_tv"
-        android:text="0"
         android:textSize="35dp"
         android:textColor="@color/black"
         android:textAlignment="textEnd"
-        android:layout_above="@+id/problem_tv"
+        android:layout_above="@+id/result_tv"
         android:layout_margin="20dp"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/problem_tv"
+        android:id="@+id/result_tv"
         android:text="0"
         android:textSize="70dp"
         android:textColor="@color/black"
