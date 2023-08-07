@@ -4,7 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@color/white">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/solution_tv"
+        android:text="0"
+        android:textSize="35dp"
+        android:textColor="@color/black"
+        android:textAlignment="textEnd"
+        android:layout_above="@+id/problem_tv"
+        android:layout_margin="20dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/problem_tv"
+        android:text="0"
+        android:textSize="70dp"
+        android:textColor="@color/black"
+        android:textAlignment="textEnd"
+        android:layout_above="@+id/buttons_layout"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"/>
+
 
     <LinearLayout
         android:layout_width="match_parent"
