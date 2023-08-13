@@ -12,9 +12,11 @@
         android:layout_height="match_parent"
         android:id="@+id/solution_tv"
         android:textSize="35dp"
+        android:maxLines="2"
         android:textColor="@color/black"
         android:textAlignment="textEnd"
         android:layout_above="@+id/result_tv"
+        android:background="@color/white"
         android:layout_margin="20dp"/>
     <TextView
         android:layout_width="match_parent"
@@ -22,6 +24,7 @@
         android:id="@+id/result_tv"
         android:text="0"
         android:textSize="70dp"
+        android:maxLines="2"
         android:textColor="@color/black"
         android:textAlignment="textEnd"
         android:layout_above="@+id/buttons_layout"

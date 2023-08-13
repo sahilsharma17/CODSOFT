@@ -56,18 +56,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //solutionTv.setText(btnText);
         String dataCalculation = solutionTv.getText().toString();
 
+        // this does the clear all operation
         if (btnText.equals("AC")) {
             solutionTv.setText("");
             resultTv.setText("0");
             return;
         }
-        if (btnText.equals("=")){
+
+        // calculates value
+        else if (btnText.equals("=")){
             solutionTv.setText(resultTv.getText());
             return;
         }
-        if (btnText.equals("C")) {
-            dataCalculation = dataCalculation.substring(0,dataCalculation.length()-1);
+
+        // clear last operation
+        else if (btnText.equals("C")) {
+            // if dataCalculation is not empty string
+            if(!dataCalculation.isEmpty()) {
+                dataCalculation = dataCalculation.substring(0, dataCalculation.length() - 1);
+            }
+            // when dataCalculation is empty
+            else {
+                dataCalculation = "";
+            }
         }
+        // the above part is causing a problem, when C is pressed while the dataCalculation is empty, it is giving org.mozilla.javascript@des.. somethingJS error
+
+        // adds pressed button's btnText to dataCalculation for evaluation
         else {
             dataCalculation = dataCalculation + btnText;
         }
@@ -75,12 +90,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         solutionTv.setText(dataCalculation);
         String finalAns = getAns(dataCalculation);
 
+        // handles error
         if (!finalAns.equals("Error")){
             resultTv.setText((finalAns));
         }
-
     }
-
     String getAns(String data){
         try{
             Context context = Context.enter();
